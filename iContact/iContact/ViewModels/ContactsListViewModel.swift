@@ -27,12 +27,6 @@ class ContactsListViewModel {
 }
 
 extension ContactsListViewModel: ContactsListViewModelProtocol {
-    static func create()-> ContactsListViewModel {
-        let repository =  ContactRepository()
-        let interactor: DisplayContactsList = DisplayContactsList(with: repository)
-        return ContactsListViewModel(with: interactor)
-    }
-    
     func didLoad() {
         self.interactor.fetchAllContacts { (allContacts, message) in
             self.contacts = allContacts ?? []

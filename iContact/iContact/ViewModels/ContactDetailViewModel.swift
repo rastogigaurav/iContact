@@ -126,12 +126,6 @@ class ContactDetailViewModel {
 }
 
 extension ContactDetailViewModel: ContactDetailViewModelProtocol {
-    static func create()-> ContactDetailViewModel{
-        let repository = ContactRepository()
-        let interactor = DisplayContact(with: repository)
-        return ContactDetailViewModel(with: interactor)
-    }
-    
     func didLoad() {
         if let id = contact?.id, !id.isEmpty {
             self.state = .edit

@@ -3,12 +3,27 @@ import UIKit
 class ContactDetailsViewController: BaseViewController {
 
     var contact = Contact()
-    private var viewModel = ContactDetailViewModel.create()
+    var viewModel: ContactDetailViewModel!
     @IBOutlet weak var leftNavigationBarButton: UIBarButtonItem!
     @IBOutlet weak var rightNavigationBarButton: UIBarButtonItem!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var headerImageView: UIImageView!
     @IBOutlet weak var fullNameLabel: UILabel!
+    
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        setup()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        setup()
+    }
+    
+    // MARK: Setup
+    private func setup() {
+        ContactDetailsConfigurator.shared.configure(self)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

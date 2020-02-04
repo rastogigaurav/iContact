@@ -2,9 +2,24 @@ import UIKit
 
 class ContactsListViewController: BaseViewController {
     
-    private var viewModel = ContactsListViewModel.create()
+    var viewModel: ContactsListViewModel!
     @IBOutlet weak var tableView: UITableView!
     private let refreshControl = UIRefreshControl()
+    
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        setup()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        setup()
+    }
+    
+    // MARK: Setup
+    private func setup() {
+        ContactsListConfigurator.shared.configure(self)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
